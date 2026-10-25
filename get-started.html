@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get a Chatbot — AlwaysOpen AI</title>
+  <meta name="description" content="Request a chatbot for your business from AlwaysOpen AI. Fill the small form — a free working demo first, you pay only if you love it.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- HEADER: simple version with back link -->
+  <header>
+    <div class="logo">AlwaysOpen AI</div>
+    <nav>
+      <a href="index.html">← Back to Home</a>
+    </nav>
+  </header>
+
+  <!-- FORM PAGE -->
+  <section class="form-page">
+    <h1>Get Your Chatbot</h1>
+    <p class="form-intro">Tell us about your business in this small form. We read every request ourselves and reply personally — and your first step is a free working demo. You pay only if you love it.</p>
+
+    <form class="req-form" id="reqForm">
+      <label for="fName">Your name *</label>
+      <input type="text" id="fName" name="name" placeholder="e.g. Ahmed Khan" required>
+
+      <label for="fPhone">Phone number</label>
+      <input type="tel" id="fPhone" name="phone" placeholder="e.g. 03xx xxxxxxx">
+
+      <label for="fEmail">Email *</label>
+      <input type="email" id="fEmail" name="email" placeholder="e.g. you@example.com" required>
+
+      <label for="fWhatsapp">WhatsApp number</label>
+      <input type="tel" id="fWhatsapp" name="whatsapp" placeholder="Same as phone? Write it here">
+
+      <label for="fPlatform">Where do your customers message you?</label>
+      <select id="fPlatform" name="platform">
+        <option>Instagram</option>
+        <option>Facebook Messenger</option>
+        <option>Telegram</option>
+        <option>Not sure yet</option>
+      </select>
+
+      <label for="fMsg">What should your chatbot do?</label>
+      <textarea id="fMsg" name="message" rows="4" placeholder="e.g. Answer prices, take orders, book appointments..."></textarea>
+
+      <button type="submit" class="form-btn">Send My Request</button>
+      <p class="form-note" id="formNote"></p>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 AlwaysOpen AI — Your Business, Open 24/7</p>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="disclaimer.html">Disclaimer</a>
+    </div>
+  </footer>
+
+  <script>
+    // Part 9: thank-you behaviour. At deployment this form gets wired
+    // to a form service so requests land in Muhammad Amir's inbox.
+    document.getElementById('reqForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+      document.getElementById('formNote').textContent = 'Thank you! Your request is noted on this demo — for the fastest reply, also DM @alwaysopen_ai on Instagram.';
+    });
+  </script>
+</body>
+</html>
