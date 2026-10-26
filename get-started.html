@@ -22,7 +22,7 @@
     <h1>Get Your Chatbot</h1>
     <p class="form-intro">Tell us about your business in this small form. We read every request ourselves and reply personally — and your first step is a free working demo. You pay only if you love it.</p>
 
-    <form class="req-form" id="reqForm">
+    <form class="req-form" id="reqForm" action="https://formspree.io/f/xrpppgdd" method="POST">
       <label for="fName">Your name *</label>
       <input type="text" id="fName" name="name" placeholder="e.g. Ahmed Khan" required>
 
@@ -61,13 +61,30 @@
     </div>
   </footer>
 
-  <script>
-    // Part 9: thank-you behaviour. At deployment this form gets wired
-    // to a form service so requests land in Muhammad Amir's inbox.
-    document.getElementById('reqForm').addEventListener('submit', function (event) {
-      event.preventDefault();
-      document.getElementById('formNote').textContent = 'Thank you! Your request is noted on this demo — for the fastest reply, also DM @alwaysopen_ai on Instagram.';
+ <script>
+  // Part 9: thank-you behaviour. The form is now wired to Formspree,
+  // so requests land in Muhammad Amir's inbox (hello.alwaysopenai@gmail.com).
+  document.getElementById('reqForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+    var form = document.getElementById('reqForm');
+    var note = document.getElementById('formNote');
+    note.textContent = 'Sending...';
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function (response) {
+      if (response.ok) {
+        note.textContent = 'Thank you! Your request is sent — we will reply personally soon. For the fastest reply, you can also DM @alwaysopen_ai on Instagram.';
+        form.reset();
+      } else {
+        note.textContent = 'Something went wrong sending that — please try again, or DM @alwaysopen_ai on Instagram.';
+      }
+    }).catch(function () {
+      note.textContent = 'Something went wrong sending that — please check your connection and try again, or DM @alwaysopen_ai on Instagram.';
     });
-  </script>
+  });
+</script>
+
 </body>
 </html>
